@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import styles from './Login.module.scss';
-import {loginService} from '../../@services/auth'
-import { useHistory } from "react-router-dom";
+import {iniciarSession} from '../../@services/auth'
+import {useHistory} from "react-router-dom";
 
 const Login = () => {
   const history = useHistory();
@@ -12,7 +12,7 @@ const Login = () => {
 
   const login = () => {
     setMensaje('')
-    loginService({usuario, password})
+    iniciarSession({usuario, password})
       .then(resp => {
         if (resp.data.codigo === 200) {
           history.push('/')
@@ -27,7 +27,7 @@ const Login = () => {
         <div className="card">
           <div className="card-body">
             <h1 className="text-center">LOGIN</h1>
-            {mensaje.length > 0 ? <h5 className="text-center text-danger">{mensaje}</h5>:''}
+            {mensaje.length > 0 ? <h5 className="text-center text-danger">{mensaje}</h5> : ''}
             <div>
               <div className="form-group">
                 <label htmlFor="usuario">Usuario</label>
@@ -57,12 +57,12 @@ const Login = () => {
             </div>
             <div className="form-group mt-3">
               <p>
-                Create an account ? <a> Register </a>
+                Crear una cuenta? <a href="/register"> Register </a>
               </p>
             </div>
             <div className="form-group mt-3">
               <p>
-                <a> Forgot password ? </a>
+                <a>me olvidé mi password?</a>
               </p>
             </div>
           </div>

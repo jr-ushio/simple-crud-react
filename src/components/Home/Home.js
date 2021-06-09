@@ -1,16 +1,38 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import styles from './Home.module.scss';
-import {listarService} from "../../@services/usuario";
+import {listar, eliminar} from "../../@services/usuario";
+import {useHistory, useLocation} from "react-router-dom";
 
 const Home = () => {
+  const history = useHistory();
+  const location = useLocation();
   const [usuarios, setUsuarios] = useState([])
 
+  const goEdit = (id, nombres, apellidos, usuario) => {
+    history.push({
+      pathname: '/edit',
+      state: {
+        id,
+        nombres,
+        apellidos,
+        usuario
+      },
+    });
+  }
   const listarUsuarios = () => {
-    listarService().then(resp => {
+    listar().then(resp => {
       console.log('resp ', resp.data);
       if (resp.data.codigo === 200) {
         setUsuarios(resp.data.data.data)
+      }
+    })
+  }
+  const eliminarUsuarios = (id) => {
+    eliminar({id}).then(resp => {
+      console.log('resp ', resp.data);
+      if (resp.data.codigo === 200) {
+        listarUsuarios();
       }
     })
   }
@@ -47,8 +69,8 @@ const Home = () => {
                   <span>{usuario.usuario}</span>
                 </td>
                 <td>
-                  <button className="btn btn-success m-1" type="button">Editar</button>
-                  <button className="btn btn-danger m-1" type="button">Eliminar</button>
+                  <button className="btn btn-success m-1" type="button" onClick={goEdit.bind(this, usuario.id,usuario.nombres, usuario.apellidos, usuario.usuario)}>Editar</button>
+                  <button className="btn btn-danger m-1" type="button" onClick={eliminarUsuarios.bind(this, usuario.id)}>Eliminar</button>
                 </td>
               </tr>
             ))}
