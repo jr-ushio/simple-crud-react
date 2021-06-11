@@ -32,6 +32,7 @@ const Home = () => {
     });
   }
   const listarUsuarios = (pagina = 1) => {
+    pagina=pagina
     listar(pagina).then(resp => {
       console.log('resp ', resp.data);
       if (resp.data.codigo === 200) {
@@ -88,12 +89,21 @@ const Home = () => {
             ))}
             </tbody>
           </table>
+          
           <Pagination
-            totalResults={50} // falta modificar para muchos resultados
-            currentPage={currentPage}
-            pageSize={pageSize}
-            paginate={paginate}
+            totalResults={totalResults} // total usuarios
+            currentPage={currentPage}  //pagina actual
+            pageSize={pageSize}       // numero de registros por pagina
+            paginate={paginate}       //  funcion
+            //pageNeighbours={1}
+
+            //totalRecords={10}
+            //pageLimit={18}
+            //pageNeighbours={1}
+            //onPageChanged={setUsuarios}
+
           />
+          
           <div>
           </div>
         </div>
