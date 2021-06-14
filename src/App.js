@@ -11,8 +11,8 @@ import Edit from "./components/Edit/Edit.lazy";
 function App() {
   return (
     <div className="App">
-      <Navbar />
       <Router>
+        <Navbar />
         <Switch>
           <Route path="/login">
             <Login />

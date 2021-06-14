@@ -73,9 +73,6 @@ const Edit = () => {
                 Actualizar
               </button>
             </div>
-            <div className="form-group mt-3">
-              <p>No tienes una cuenta?<a href="/login"> Login </a></p>
-            </div>
           </div>
         </div>
       </div>

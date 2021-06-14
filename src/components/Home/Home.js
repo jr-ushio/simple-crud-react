@@ -48,6 +48,10 @@ const Home = () => {
       }
     })
   }
+  const goRegister = () => {
+    history.push('/register')
+  }
+
   useEffect(() => {
     listarUsuarios();
   }, []);
@@ -57,7 +61,7 @@ const Home = () => {
       <div className="card-body">
         <div id="table" className="table-editable">
         <span className="table-add float-right mb-3 mr-2">
-          <a className="btn btn-primary" href="/register">REGISTRAR</a>
+          <a className="btn btn-primary" onClick={goRegister}>REGISTRAR</a>
         </span>
           <table className="table table-bordered table-responsive-md table-striped text-center">
             <thead>

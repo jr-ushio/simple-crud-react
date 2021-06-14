@@ -1,9 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Navbar.module.scss';
+import {useHistory} from "react-router-dom";
 
 const Navbar = () => {
+  const history = useHistory();
 
+  const goLogin = () => {
+    history.push('/login')
+  }
+  const goRegister = () => {
+    history.push('/register')
+  }
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
       <a className="navbar-brand">React v17</a>
@@ -27,10 +35,10 @@ const Navbar = () => {
         </ul>
         <ul className="navbar-nav">
           <li className="nav-item">
-            <a className="nav-link btn btn-link" href="/login">Login</a>
+            <a className="nav-link btn btn-link" onClick={goLogin}>Login</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link btn btn-link" href="/register">Register</a>
+            <a className="nav-link btn btn-link" onClick={goRegister}>Register</a>
           </li>
         </ul>
       </div>
