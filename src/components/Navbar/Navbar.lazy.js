@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 
-const LazyNavbar = lazy(() => import('./Navbar'));
+const LazyNavbar = lazy(() => import('./Navbar' /* webpackChunkName: "Navbar" */));
 
 const Navbar = props => (
   <Suspense fallback={null}>
